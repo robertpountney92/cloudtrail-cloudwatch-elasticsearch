@@ -1,6 +1,6 @@
 # cloudtrail-cloudwatch-elasticsearch module
 
-Terraform module to collect and display CloudTrail logs through AWS Elasticsearch
+Terraform module to collect and stream CloudTrail logs for and AWS accout to a CloudWatch group. The data from the CloudWatch group is then sent to AWS Elasticsearch for data visualisation.
 
 
 ## Usage
