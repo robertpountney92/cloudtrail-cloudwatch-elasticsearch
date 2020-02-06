@@ -24,7 +24,7 @@ module "cloudtrail-cloudwatch-elasticsearch" {
 | prefix | Prefix to be applied to created resources, allowing for easy identification of those resources | string | `` | yes |
 | region| AWS region | string | `` | yes |
 | es_version | Elasticsearch version | string | 5.1 | no |
-| es_management_public_ip_address | IP address permitted to access the Elasticsearch domain | string | '' | yes |
+| es_management_public_ip_address | IP address permitted to access the Elasticsearch domain | string | `` | yes |
 | es_instance_type | The instance type for instances within Elasticsearch cluster | string | `t2.small.elasticsearch` | no |
 | es_instance_count | Number of instances in Elasticsearch cluster | number | 1 | no |
 
