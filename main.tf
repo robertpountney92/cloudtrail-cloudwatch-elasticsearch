@@ -172,35 +172,6 @@ data "aws_iam_policy_document" "assume_policy" {
   }
 }
 
-
-
-
-######################################################################
-# Allow CloudWatch to push logs to Elasticsearch
-######################################################################
-// resource "aws_cloudwatch_log_resource_policy" "elasticsearch-log_publishing-policy" {
-//   policy_name = "${var.prefix}-elasticsearch-log-publishing-policy"
-//   policy_document = <<CONFIG
-// {
-//   "Version": "2012-10-17",
-//   "Statement": [
-//     {
-//       "Effect": "Allow",
-//       "Principal": {
-//         "Service": "es.amazonaws.com"
-//       },
-//       "Action": [
-//         "logs:PutLogEvents",
-//         "logs:PutLogEventsBatch",
-//         "logs:CreateLogStream"
-//       ],
-//       "Resource": "arn:aws:logs:*"
-//     },
-//   ]
-// }
-// CONFIG
-// }
-
 ######################################################################
 # Create Elasticsearch domain
 ######################################################################
@@ -305,11 +276,8 @@ resource "aws_lambda_permission" "allow_cloudwatch" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.LogsToElasticsearch.arn}"
-  // principal     = "logs.${var.region}.amazonaws.com"
   principal     = "logs.amazonaws.com"
   source_arn    = "${aws_cloudwatch_log_group.cloudwatch_log_group.arn}"
-  // source_account = "${data.aws_caller_identity.current.account_id}"
-  // qualifier     = "${aws_lambda_alias.lambda_alias.name}"
 }
 
 resource "aws_cloudwatch_log_subscription_filter" "lambdafunction_logfilter" {
